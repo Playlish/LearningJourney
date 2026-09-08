@@ -7,13 +7,11 @@ public class KeyboardSetUp : MonoBehaviour
     [SerializeField] char[] _keys;
     [SerializeField] GameObject[] _uiButtons;
     public int _correctGuesses;
-    [SerializeField] UI _ui;
-    [SerializeField] LevelStart _levelStart;
-    [SerializeField] SaveData _saveData;
+
 
     public LevelStart levelStart;
     public UI uiManager;
-    public SaveAndLoad saveAndLoad;
+
 
     public List<char> correctLettersGuessed = new List<char> ();
     public List<char> incorrectLettersGuessed = new List<char> ();
@@ -27,6 +25,10 @@ public class KeyboardSetUp : MonoBehaviour
         ReloadKeyboard();
         
     }
+    private void Start()
+    {
+        Debug.Log($"correct guesses: {_correctGuesses}");
+    }
     public void StartLoadedGame()
     {
         CheckLoadedData();
@@ -39,7 +41,7 @@ public class KeyboardSetUp : MonoBehaviour
             //right guess
             if (levelStart.chosenWord.Contains(_keys[index]))
             {
-                Debug.Log("You guessed correct!");
+                
                 //change selected button to green when right
                // _uiButtons[index].GetComponent<Image>().color = Color.green;
                 _uiButtons[index].GetComponent<Button>().image.sprite = correctSprite;
@@ -47,7 +49,6 @@ public class KeyboardSetUp : MonoBehaviour
                 //add points to score
                 uiManager.currentPoints = uiManager.currentPoints + 10;
                 //debug how many points we have
-                Debug.Log($"You have {uiManager.currentPoints} points");
 
                 //for every character in the word
                 for (int i = 0; i < levelStart.characters.Length; i++)
@@ -68,27 +69,27 @@ public class KeyboardSetUp : MonoBehaviour
             //wrong guess
             else
             {
-                Debug.Log("You guessed incorrect!");
+                
                 //change the selected button when wrong
                 _uiButtons[index].GetComponent<Button>().image.sprite = incorrectSprite;
 
                 //remove points
                 uiManager.currentPoints = uiManager.currentPoints - 5;
                 //debug the amount of points
-                Debug.Log($"You have {uiManager.currentPoints} points");
+                
                 //removes one remaining guess
                 uiManager.guessesLeft--;
                 //make that letter unable to be guessed
                 _uiButtons[index].GetComponent<Button>().interactable = false;
                 //debug which letter was guessed
-                Debug.Log($"You guessed: {_keys[index]}");
+                
                 //add that letter to the list of wrong letters
                 incorrectLettersGuessed.Add(_keys[index]);
 
                 //when level is lost
                 if (uiManager.guessesLeft <= 0)
                 {
-                    Debug.Log("You have lost!");
+                    
 
                     //change scene to points display, try again, quit menu
                     foreach (var key in _uiButtons)
@@ -107,7 +108,7 @@ public class KeyboardSetUp : MonoBehaviour
             //you win!
             uiManager.WonMatch();
         }
-       
+       Debug.Log($"correct guesses: {_correctGuesses}");
     }
     void ReloadKeyboard()
     {
@@ -125,7 +126,7 @@ public class KeyboardSetUp : MonoBehaviour
             //reset remaining  guesses            
             uiManager.guessesLeft = 7;
             //reset correct guesses
-            _correctGuesses = 0;
+            //_correctGuesses = 0;
         }
     }
 
@@ -165,7 +166,7 @@ public class KeyboardSetUp : MonoBehaviour
             }
             if (uiManager.guessesLeft <= 0)
             {
-                Debug.Log("You have lost!");
+                
 
                 //change scene to points display, try again, quit menu
                 foreach (var key in _uiButtons)
