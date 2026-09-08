@@ -61,6 +61,7 @@ public class KeyboardSetUp : MonoBehaviour
                         _correctGuesses++;
                         //add the letter to the list of guessed letters
                         correctLettersGuessed.Add(_keys[index]);
+                        _uiButtons[index].GetComponent<Button>().interactable = false;
                     }
                 }
             }
