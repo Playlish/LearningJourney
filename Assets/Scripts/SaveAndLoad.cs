@@ -38,7 +38,7 @@ public class SaveAndLoad : MonoBehaviour
         _saveData.currentWord = _levelStart.chosenWord;
         _saveData.correctLettersGuessed = _keyboardSetUp.correctLettersGuessed;
         _saveData.incorrectLettersGuessed = _keyboardSetUp.incorrectLettersGuessed;
-      
+        _saveData.correctGuesses = _keyboardSetUp._correctGuesses;
     }
     void SaveJson(SaveData dataToSave, string pathToSaveTo)
     {
@@ -68,6 +68,7 @@ public class SaveAndLoad : MonoBehaviour
 
         _keyboardSetUp.correctLettersGuessed = _saveData.correctLettersGuessed;
         _keyboardSetUp.incorrectLettersGuessed = _saveData.incorrectLettersGuessed;
+        _keyboardSetUp._correctGuesses = _saveData.correctGuesses;
     }
     public void LoadGame()
     {
