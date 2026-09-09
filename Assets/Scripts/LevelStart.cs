@@ -47,7 +47,6 @@ public class LevelStart : MonoBehaviour
         //
         filePath = $"{Application.streamingAssetsPath}/Difficulty/{_selectedDifficulty}.txt";
         //Prints the file path to console
-        Debug.Log(filePath);
     }
     string ReadTextFile()
     {

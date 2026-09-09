@@ -38,7 +38,8 @@ public class SaveAndLoad : MonoBehaviour
         _saveData.currentWord = _levelStart.chosenWord;
         _saveData.correctLettersGuessed = _keyboardSetUp.correctLettersGuessed;
         _saveData.incorrectLettersGuessed = _keyboardSetUp.incorrectLettersGuessed;
-      
+        _saveData.correctGuesses = _keyboardSetUp._correctGuesses;
+        Debug.Log($"Saved {_saveData.correctGuesses} correct guesses");
     }
     void SaveJson(SaveData dataToSave, string pathToSaveTo)
     {
@@ -60,14 +61,15 @@ public class SaveAndLoad : MonoBehaviour
     void SendSaveDataToGame()
     {
         _ui.currentPoints = _saveData.score;
-        Debug.Log(_ui.currentPoints);
-        Debug.Log(_saveData.score);
+
 
         // _ui.guessesLeft = _saveData.remaingGuesses; // <--- this not working
         _levelStart.chosenWord = _saveData.currentWord;
 
         _keyboardSetUp.correctLettersGuessed = _saveData.correctLettersGuessed;
         _keyboardSetUp.incorrectLettersGuessed = _saveData.incorrectLettersGuessed;
+        _keyboardSetUp._correctGuesses = _saveData.correctGuesses;
+        Debug.Log($"Loaded {_keyboardSetUp._correctGuesses} correct guesses");
     }
     public void LoadGame()
     {

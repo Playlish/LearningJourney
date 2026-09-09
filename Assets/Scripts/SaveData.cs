@@ -8,6 +8,7 @@ public class SaveData
     public List<char> correctLettersGuessed = new List<char>();
     public List<char> incorrectLettersGuessed = new List<char>();  
     public int score;
+    public int correctGuesses;
     // public int remaingGuesses;
     // public int correctGuesses;
 }
